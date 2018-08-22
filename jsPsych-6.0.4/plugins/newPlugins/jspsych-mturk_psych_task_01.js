@@ -32,28 +32,6 @@ jsPsych.plugins["mturk_psych_task_01"] = (function() {
 
   plugin.trial = function(display_element, trial) {
     display_element.offsetwidth = 960;
-    // set keyboadListeners
-    var keyboardListener_one = jsPsych.pluginAPI.getKeyboardResponse({
-      callback_function: pressBtn(),
-      valid_responses: [49],
-      rt_method: 'date',
-      persist: false,
-      allow_held_key: false,
-    });
-    var keyboardListener_two = jsPsych.pluginAPI.getKeyboardResponse({
-      callback_function: pressBtn(),
-      valid_responses: [50],
-      rt_method: 'date',
-      persist: false,
-      allow_held_key: false,
-    });
-    var keyboardListener_three = jsPsych.pluginAPI.getKeyboardResponse({
-      callback_function: pressBtn(),
-      valid_responses: [51],
-      rt_method: 'date',
-      persist: false,
-      allow_held_key: false,
-    });
     // set functions to handle responses from ppts
     var pressBtn = function(info) {
       if(firstResponse.key == -1) {
@@ -87,9 +65,30 @@ jsPsych.plugins["mturk_psych_task_01"] = (function() {
       var chc = '<img src ="images/mturk_psych_task_01/choice.jpg" class = "block-center">';
       display_element.innerHTML = chc;
       // run keyboard listners
-      keyboardListener_one;
-      keyboardListener_two;
-      keyboardListener_three;
+      //keyboardListener_one;
+      jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: pressBtn,
+        valid_responses: [49],
+        rt_method: 'date',
+        persist: false,
+        allow_held_key: false,
+      });
+      //keyboardListener_two;
+      jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: pressBtn,
+        valid_responses: [50],
+        rt_method: 'date',
+        persist: false,
+        allow_held_key: false,
+      });
+      //keyboardListener_three;
+      jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: pressBtn,
+        valid_responses: [51],
+        rt_method: 'date',
+        persist: false,
+        allow_held_key: false,
+      });
       // wait for next stimulus
       var t1 = setTimeout(function() {
         responseCheck();
@@ -162,8 +161,22 @@ jsPsych.plugins["mturk_psych_task_01"] = (function() {
       var smmrotcm = '<img src ="' + summaryOutcome + '" class = "block-center">';
       display_element.innerHTML = smmrotcm;
       // run keyboard listners
-      keyboardListener_one;
-      keyboardListener_two;
+      //keyboardListener_acc;
+      jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: pressBtn,
+        valid_responses: [49],
+        rt_method: 'date',
+        persist: false,
+        allow_held_key: false,
+      });
+      //keyboardListener_rjc;
+      jsPsych.pluginAPI.getKeyboardResponse({
+        callback_function: pressBtn,
+        valid_responses: [50],
+        rt_method: 'date',
+        persist: false,
+        allow_held_key: false,
+      });
       var t7 = setTimeout(function() {
         showResult();
       }, holdTime["decisionMaking"])
