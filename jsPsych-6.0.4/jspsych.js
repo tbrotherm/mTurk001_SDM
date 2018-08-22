@@ -132,11 +132,12 @@ window.jsPsych = (function() {
       }
     }
     opts.display_element.innerHTML = '<div class="jspsych-content-wrapper"><div id="jspsych-content"></div></div>';
-    DOM_container = document.querySelector('#jspsych-content');
-    DOM_target = opts.display_element;
+    DOM_container = opts.display_element;
+    DOM_target = document.querySelector('#jspsych-content');
 
     // add tabIndex attribute to scope event listeners
     opts.display_element.tabIndex = 0;
+    DOM_target.tabIndex = 0;
 
     // add CSS class to DOM_target
     if(opts.display_element.className.indexOf('jspsych-display-element') == -1){

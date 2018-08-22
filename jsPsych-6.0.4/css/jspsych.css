@@ -30,6 +30,10 @@
    margin: auto; /* this is for overflowing content */
  }
 
+ .jspsych-content:focus {
+   outline: none;
+ }
+
  .jspsych-top {
    align-items: flex-start;
  }
