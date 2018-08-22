@@ -138,7 +138,7 @@ window.jsPsych = (function() {
     // add tabIndex attribute to scope event listeners
 //modify 2018.08.22
 //    opts.display_element.tabIndex = 0;
-      DOM_target.tabIndex = 0;
+      DOM_target.tabIndex = -1;
 
     // add CSS class to DOM_target
     if(opts.display_element.className.indexOf('jspsych-display-element') == -1){
