@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="jsPsych-6.0.4/js/jquery.min.js"></script>
+  <script src="jsPsych-6.0.4/jspsych.js"></script>
+  <script src="jsPsych-6.0.4/plugins/jspsych-external-html.js"></script>
+  <script src="jsPsych-6.0.4/plugins/jspsych-html-keyboard-response.js"></script>
+  <script src="jsPsych-6.0.4/plugins/jspsych-survey-likert.js"></script>
+  <script src="jsPsych-6.0.4/plugins/jspsych-survey-multi-choice.js"></script>
+  <script src="jsPsych-6.0.4/plugins/jspsych-survey-text.js"></script>
+  <script src="jsPsych-6.0.4/plugins/newPlugins/jspsych-mturk_psych_task_01.js"></script>
+  <script src="jsPsych-6.0.4/plugins/newPlugins/jspsych-mturk_psych_matching.js"></script>
+  <script type="text/javascript">
+  // data parameter should be either the value of jsPsych.data()
+  // or the parameter that is passed to the on_data_update callback function for the core library
+  // jsPsych.data() contains ALL data
+  // the callback function will contain only the most recently written data.
+  function save_data(data){
+     var data_table = "mturk_psych_task_01"; // change this for different experiments
+     $.ajax({
+        type:'post',
+        cache: false,
+        url: 'jsPsych-6.0.4/savefile.php', // change this to point to your php file.
+        // opt_data is to add additional values to every row, like a subject ID
+        // replace 'key' with the column name, and 'value' with the value.
+        data: {
+            table: data_table,
+            json: JSON.stringify(data),
+            //opt_data: {key: value}
+        },
+        success: function(output) { console.log(output); } // write the result to javascript console
+     });
+  }</script>
+  <script src="expScripts/mturk_psych_task_01.js"></script>
+  <link rel="stylesheet" href="jsPsych-6.0.4/css/jspsych.css"></link>
+</head>
+
+<body>
+  <p>The task does not start because there is an error with Javascript on your computer. To perform this task, you must have Javascript and cookies enabled on your browser.</p>
+</body>
+<script>
+  psycExp();
+</script>
+</html>

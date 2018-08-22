@@ -1,0 +1,65 @@
+<!-- For help on using this template, see the blog post: http://mechanicalturk.typepad.com/blog/2014/04/editing-the-survey-link-project-template-in-the-ui.html --><!-- Bootstrap v3.0.3 -->
+<!-- For help on using this template, see the blog post: https://research-it.wharton.upenn.edu/news/capture-mturk-workers-ids-qualtrics-survey/ --><!-- Bootstrap v3.0.3 -->
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<section class="container" id="SurveyLink">
+	<!-- Instructions -->
+	<div class="row">
+		<div class="col-xs-12 col-md-12">
+			<div class="panel panel-primary"><!-- WARNING: the ids "collapseTrigger" and "instructionBody" are being used to enable expand/collapse feature -->
+				<a class="panel-heading" href="javascript:void(0);" id="collapseTrigger"><strong>Survey Link Instructions</strong> <span class="collapse-text">(Click to expand)</span> </a>
+				<div class="panel-body" id="instructionBody">
+					<p>We are conducting a psychological task about social interactions. We need to understand your response to another participant. Select the link below to complete the task. At the end of the task, you will receive a code to paste into the box below to receive credit for taking our task.</p>
+
+					<p><strong>Make sure to leave this window open as you complete the task. </strong> When you are finished, you will return to this page to paste the code into the box.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Instruction -->
+	<!-- Survey Link Layout -->
+	<div class="row" id="workContent">
+		<div class="col-xs-12 col-md-10 col-md-offset-1">
+			<!-- Content for Worker -->
+			<table class="table table-condensed table-bordered">
+				<colgroup>
+					<col class="col-xs-4 col-md-4" />
+					<col class="col-xs-8 col-md-8" />
+				</colgroup>
+				<tbody>
+					<tr>
+						<td><label>Survey link:</label></td>
+						<td>
+							<div id="myelementLink">
+								<p>URL not shown because there is an error with Javascript on your computer. To perform this HIT, you must have Javascript and cookies enabled on your browser.</p>
+							</div>
+							<script type="text/javascript" language="JavaScript">
+								var assignment_id_field = document.getElementById('myelementLink');
+								var paramstr = window.location.search.substring(1);
+								var parampairs = paramstr.split("&");
+								var mtwID = "";
+								for (i in parampairs) {
+									var pair = parampairs[i].split("=");
+									if (pair[0] == "workerId")
+									mtwID = pair[1];
+								}
+								if (mtwID == "" ) {
+									assignment_id_field.innerHTML = '<p>The link will appear here only if you accept this HIT.</p>';
+								} else {
+									assignment_id_field.innerHTML = '<p><a class="dont-break-out" href="https://tbrotherm.com/psycExp/mturk_psych_task_01.html?mtwID=' + mtwID + '" target="_blank">https://tbrotherm.com/psycExp/mturk_psych_task_01.html&mtwID=' + mtwID + '</a></p>';
+								}
+							</script>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<!-- End Content for Worker -->
+			<!-- Input from Worker -->
+			<div class="form-group">
+				<label for="surveycode"><strong>Provide the task code (10 charactors) here:</strong></label>
+				<input class="form-control" id="surveycode" name="surveycode" placeholder="e.g. 12345abcde" required="" type="text" />
+			</div>
+			<!-- End input from Worker -->
+		</div>
+	</div>
+	<!-- End Survey Link Layout -->
+</section>
