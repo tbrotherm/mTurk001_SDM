@@ -13,18 +13,6 @@ jsPsych.plugins["mturk_psych_matching"] = (function() {
   }
 
   plugin.trial = function(display_element, trial) {
-    // set functions to handle responses from ppts
-    var pressBtn = function(info) {
-      matching();
-    };
-    // set keyboadListeners
-//    var keyboardListener_resume = jsPsych.pluginAPI.getKeyboardResponse({
-//      callback_function: pressBtn,
-//      valid_responses: [32],
-//      rt_method: 'date',
-//      persist: false,
-//      allow_held_key: false,
-//    });
     // set function initiating the trial
     var initial = function() {
       display_element.innerHTML = '';
@@ -36,12 +24,12 @@ jsPsych.plugins["mturk_psych_matching"] = (function() {
       display_element.innerHTML = pptId;
       //keyboardListener_resume;
       jsPsych.pluginAPI.getKeyboardResponse({
-      callback_function: pressBtn,
-      valid_responses: [32],
-      rt_method: 'date',
-      persist: false,
-      allow_held_key: false,
-    });
+				callback_function: matching,
+				valid_responses: [32],
+				rt_method: 'date',
+				persist: false,
+				allow_held_key: false,
+			});
     };
     var matching = function() {
       display_element.innerHTML = '';
