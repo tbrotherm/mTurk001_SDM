@@ -160,13 +160,13 @@ var psycExp = function(){
   var rest_block1 = {
     type: 'html-keyboard-response',
     choices: [32],
-    stimulus: feedback01,
-		on_start: function() {
+    stimulus: function() {
 			resultFirstBlock = getFinalOutcome();
-			feedback01 = '<p>This is the end of first block. Thank you for your participation</p>' + 
-      '<p>You gain<b>' + resultFirstBlock.selfOutcome + 'dollors</b> in this block (lose if the number is negative)，<br>' + 
-      'your partner gains<b>' + resultFirstBlock.otherOutcome + 'dollors</b> in this block (lose if the number is negative)</p>' + 
-      '<p>Press space key to resume the second block.</p>';
+			feedback01 += '<p>This is the end of first block. Thank you for your participation</p>';
+      feedback01 += '<p>You gain <b>' + resultFirstBlock.selfOutcome/100 + ' dollors</b> in this block (lose if the number is negative)，<br>';
+      feedback01 += 'your partner gains <b>' + resultFirstBlock.otherOutcome/100 + ' dollors</b> in this block (lose if the number is negative)</p>';
+      feedback01 += '<p>Press space key to resume the second block.</p>';
+      return feedback01;
 		},
   };
   var mturk_psych_task_01_block2 = {
@@ -177,15 +177,15 @@ var psycExp = function(){
   var rest_block2 = {
     type: 'html-keyboard-response',
     choices: [32],
-    stimulus: feedback02,
-		on_start: function() {
+    stimulus: function() {
       resultSecondBlock = getFinalOutcome();
       resultSecondBlock.selfOutcome = resultSecondBlock.selfOutcome - resultFirstBlock.selfOutcome;
       resultSecondBlock.otherOutcome = resultSecondBlock.otherOutcome - resultFirstBlock.otherOutcome;
-			feedback02 = '<p>This is the end of second block. Thank you for your participation</p>' + 
-      '<p>You gain<b>' + resultSecondBlock.selfOutcome + 'dollors</b> in this block (lose if the number is negative)，<br>' + 
-      'your partner gains<b>' + resultSecondBlock.otherOutcome + 'dollors</b> in this block (lose if the number is negative)</p>' + 
-      '<p>Press space key to resume the survey block.</p>';
+			feedback02 += '<p>This is the end of second block. Thank you for your participation</p>';
+      feedback02 += '<p>You gain <b>' + resultSecondBlock.selfOutcome/100 + ' dollors</b> in this block (lose if the number is negative)，<br>';
+      feedback02 += 'your partner gains <b>' + resultSecondBlock.otherOutcome/100 + ' dollors</b> in this block (lose if the number is negative)</p>';
+      feedback02 += '<p>Press space key to resume the survey block.</p>';
+      return feedback02;
 		},
   };
   var survey_block01 = {
@@ -206,12 +206,12 @@ var psycExp = function(){
 
   // determine timeline
   var timeline = [];
-  timeline.push(facePage);
-  timeline.push(matching);
-  timeline.push(instPage);
-  timeline.push(mturk_psych_task_01_block1);
+//  timeline.push(facePage);
+//  timeline.push(matching);
+//  timeline.push(instPage);
+//  timeline.push(mturk_psych_task_01_block1);
   timeline.push(rest_block1);
-  timeline.push(mturk_psych_task_01_block2);
+//  timeline.push(mturk_psych_task_01_block2);
   timeline.push(rest_block2);
   timeline.push(survey_block01);
   timeline.push(survey_block02);
@@ -293,7 +293,7 @@ var feedback01 = '';
 var feedback02 = '';
 // set function to assess final outcomes of blocks
 var getFinalOutcome = function() {
-  var trials = jsPsych.data.getTrialsOfType('mturk_psych_task_01');
+  var trials = jsPsych.data.get().filter({trial_type: 'mturk_psych_task_01'}).values();
   var selfOutcome = 0; 
   var otherOutcome = 0;
   for (var i = 0; i < trials.length; i++) {
