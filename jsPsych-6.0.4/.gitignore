@@ -1,9 +1,0 @@
-node_modules/
-.DS_Store
-Thumbs.db
-mTurk001_SDM.sublime-project
-mTurk001_SDM.sublime-workspace
-/.settings/
-/.project
-/.tern-project
-site/
